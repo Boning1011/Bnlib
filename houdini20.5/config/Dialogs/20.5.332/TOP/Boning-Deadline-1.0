@@ -1,0 +1,227 @@
+// Magic: 90134288
+// Automatically generated PSI dialog (PSI version 20.5.332)
+// Fri Aug 30 17:46:08 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+roppath.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ roppath.label = PARM_LABEL("ROP Path", "roppath") WIDTH(1.5);
+ PARM_FIELD(pathstring, "roppath") VALUE(roppath.val) 
+	LABELREF(roppath.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(roppath.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(roppath.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+rendersettingpath.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ rendersettingpath.label = PARM_LABEL("Render Setting Path", "rendersettingpath") WIDTH(1.5);
+ PARM_FIELD(pathstring, "rendersettingpath") VALUE(rendersettingpath.val) 
+	LABELREF(rendersettingpath.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(rendersettingpath.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(rendersettingpath.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+trange.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    trange.label = PARM_LABEL_SIMPLE("Valid Frame Range", "trange") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    trange.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dl_limit_frames_to_node.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dl_limit_frames_to_node", "Limit Render Frames to Deadline Node") toggle VALUE(dl_limit_frames_to_node.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+f.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   f.label = PARM_LABEL("Start/End/Inc", "f") WIDTH(1.5);
+   PARM(float, 3, "f", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(f.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+dl_priority.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ dl_priority.label = PARM_LABEL("Priority", "dl_priority") WIDTH(1.5);
+ PARM(integer, 1, "dl_priority", none, none) RANGE(0,100)
+	LOCK_RANGE LABELREF(dl_priority.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+dl_machine_limit.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ dl_machine_limit.label = PARM_LABEL("Machine Limit", "dl_machine_limit") WIDTH(1.5);
+ PARM(integer, 1, "dl_machine_limit", none, none) RANGE(0,1000000)
+	LOCK_RANGE LABELREF(dl_machine_limit.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+dl_blacklist.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dl_blacklist", "Machine List Is A Deny List") toggle VALUE(dl_blacklist.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dl_machine_list.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    dl_machine_list.label = PARM_LABEL("Machine List", "dl_machine_list") WIDTH(1.5);
+    PARM_FIELD(string, "dl_machine_list") VALUE(dl_machine_list.val) 
+	LABELREF(dl_machine_list.label) HSTRETCH;
+
+    ACTION_ICONBUTTON "BUTTONS_gear" VALUE(dl_machine_list.script_action)
+	HELP("")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+dl_chunk_size.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ dl_chunk_size.label = PARM_LABEL("Frames Per Task", "dl_chunk_size") WIDTH(1.5);
+ PARM(integer, 1, "dl_chunk_size", none, none) RANGE(1,1000000)
+	LOCK_RANGE LABELREF(dl_chunk_size.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+joboptions.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "joboptions.gad"
+    { 
+	VALUE(joboptions.gad.val) STRETCH(1,0)
+
+	TAB "Job Options"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    dl_priority.gad;		
+	    dl_machine_limit.gad;		
+	    dl_blacklist.gad;		
+	    dl_machine_list.gad;		
+	    dl_chunk_size.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+deadline.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "deadline.gad"
+    { 
+	VALUE(deadline.gad.val) STRETCH(1,0)
+
+	TAB "Deadline"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    trange.gad;		
+	    dl_limit_frames_to_node.gad;		
+	    f.gad;		
+	    joboptions.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    roppath.gad; 
+    rendersettingpath.gad; 
+    deadline.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

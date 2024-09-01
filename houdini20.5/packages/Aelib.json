@@ -1,0 +1,10 @@
+{
+	"env": [
+        {
+			"AELIB": "C:/Users/vvox/Documents/houdini20.5/Aelib"
+        }
+	],
+	"path": [
+        "$AELIB"
+    ]
+}

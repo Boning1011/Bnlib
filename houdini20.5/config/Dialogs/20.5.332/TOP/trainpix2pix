@@ -1,0 +1,766 @@
+// Magic: c85b46d4
+// Automatically generated PSI dialog (PSI version 20.5.332)
+// Thu Aug 22 17:23:18 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+pdg_workitemgeneration.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    pdg_workitemgeneration.label = PARM_LABEL_SIMPLE("Generate When", "pdg_workitemgeneration") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    pdg_workitemgeneration.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+pdg_cachemode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    pdg_cachemode.label = PARM_LABEL_SIMPLE("Cache Mode", "pdg_cachemode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    pdg_cachemode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+venvpath.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ venvpath.label = PARM_LABEL("Environment Path", "venvpath") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "venvpath") LABELREF(venvpath.label)
+	VALUE(venvpath.val) HSTRETCH;
+
+    venvpath.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(venvpath.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+venvsource.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    venvsource.label = PARM_LABEL_SIMPLE("Environment Init", "venvsource") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    venvsource.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+pythonbin.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    pythonbin.label = PARM_LABEL_SIMPLE("Python Bin", "pythonbin") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    pythonbin.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+python.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    python.label = PARM_LABEL("Custom Python Bin", "python") WIDTH(1.5);
+    PARM_FIELD(string, "python") VALUE(python.val) 
+	LABELREF(python.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+pdgml.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ pdgml.label = PARM_LABEL("ML Module Path", "pdgml") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "pdgml") LABELREF(pdgml.label)
+	VALUE(pdgml.val) HSTRETCH;
+
+    pdgml.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(pdgml.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+venvdescription.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(venvdescription.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+trainingprefix.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    trainingprefix.label = PARM_LABEL("Model Prefix", "trainingprefix") WIDTH(1.5);
+    PARM_FIELD(string, "trainingprefix") VALUE(trainingprefix.val) 
+	LABELREF(trainingprefix.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+trainingresults.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ trainingresults.label = PARM_LABEL("Test Output", "trainingresults") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "trainingresults") LABELREF(trainingresults.label)
+	VALUE(trainingresults.val) HSTRETCH;
+
+    trainingresults.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(trainingresults.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+trainingcheckpoints.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ trainingcheckpoints.label = PARM_LABEL("Model Output", "trainingcheckpoints") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "trainingcheckpoints") LABELREF(trainingcheckpoints.label)
+	VALUE(trainingcheckpoints.val) HSTRETCH;
+
+    trainingcheckpoints.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(trainingcheckpoints.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+trainingsaverate.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ trainingsaverate.label = PARM_LABEL("Model Save Rate", "trainingsaverate") WIDTH(1.5);
+ PARM(integer, 1, "trainingsaverate", none, none) RANGE(0,10)
+	 LABELREF(trainingsaverate.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+trainingoutput.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    trainingoutput.label = PARM_LABEL_SIMPLE("Node Output", "trainingoutput") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    trainingoutput.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+trainingsaveplots.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+trainingsaveplots.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+trainingsaveplots.gad = PARM_BUTTON("trainingsaveplots", "") toggle VALUE(trainingsaveplots.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+trainingplots.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ trainingplots.label = PARM_LABEL("SSIM Plot Output", "trainingplots") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "trainingplots") LABELREF(trainingplots.label)
+	VALUE(trainingplots.val) HSTRETCH;
+
+    trainingplots.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(trainingplots.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+traininguseonnx.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+traininguseonnx.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+traininguseonnx.gad = PARM_BUTTON("traininguseonnx", "") toggle VALUE(traininguseonnx.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+trainingonnx.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ trainingonnx.label = PARM_LABEL("ONNX Output", "trainingonnx") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "trainingonnx") LABELREF(trainingonnx.label)
+	VALUE(trainingonnx.val) HSTRETCH;
+
+    trainingonnx.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(trainingonnx.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+trainingusetensorboard.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+trainingusetensorboard.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+trainingusetensorboard.gad = PARM_BUTTON("trainingusetensorboard", "") toggle VALUE(trainingusetensorboard.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+trainingtensorboard.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ trainingtensorboard.label = PARM_LABEL("TensorBoard Output", "trainingtensorboard") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "trainingtensorboard") LABELREF(trainingtensorboard.label)
+	VALUE(trainingtensorboard.val) HSTRETCH;
+
+    trainingtensorboard.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(trainingtensorboard.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+
+trainingimages.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ trainingimages.label = PARM_LABEL("Image Input Dir", "trainingimages") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "trainingimages") LABELREF(trainingimages.label)
+	VALUE(trainingimages.val) HSTRETCH;
+
+    trainingimages.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(trainingimages.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+traininguseimagecount.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+traininguseimagecount.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+traininguseimagecount.gad = PARM_BUTTON("traininguseimagecount", "") toggle VALUE(traininguseimagecount.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+trainingimagecount.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ trainingimagecount.label = PARM_LABEL("Limit Dataset Size", "trainingimagecount") WIDTH(1.32);
+ PARM(integer, 1, "trainingimagecount", none, none) RANGE(0,10)
+	 LABELREF(trainingimagecount.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+trainingimagesize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ trainingimagesize.label = PARM_LABEL("Image Size", "trainingimagesize") WIDTH(1.5);
+ PARM(integer, 1, "trainingimagesize", none, none) RANGE(0,10)
+	 LABELREF(trainingimagesize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+trainingimagechannels.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ trainingimagechannels.label = PARM_LABEL("Image Channels", "trainingimagechannels") WIDTH(1.5);
+ PARM(integer, 1, "trainingimagechannels", none, none) RANGE(0,10)
+	 LABELREF(trainingimagechannels.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+trainingbatchsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ trainingbatchsize.label = PARM_LABEL("Batch Size", "trainingbatchsize") WIDTH(1.5);
+ PARM(integer, 1, "trainingbatchsize", none, none) RANGE(0,10)
+	 LABELREF(trainingbatchsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+trainingdirection.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("trainingdirection", "Flip Training Direction") toggle VALUE(trainingdirection.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+traininglr.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ traininglr.label = PARM_LABEL("Learning Rate", "traininglr") WIDTH(1.5);
+ PARM(float, 1, "traininglr", none, none) RANGE(0,10)
+	 LABELREF(traininglr.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+trainingiterations.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ trainingiterations.label = PARM_LABEL("Total Iterations", "trainingiterations") WIDTH(1.5);
+ PARM(integer, 1, "trainingiterations", none, none) RANGE(0,10)
+	 LABELREF(trainingiterations.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+trainingdecay.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ trainingdecay.label = PARM_LABEL("Decay Iterations", "trainingdecay") WIDTH(1.5);
+ PARM(integer, 1, "trainingdecay", none, none) RANGE(0,10)
+	 LABELREF(trainingdecay.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+sepparm3.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+trainingglayers.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ trainingglayers.label = PARM_LABEL("Generator Layers", "trainingglayers") WIDTH(1.5);
+ PARM(integer, 1, "trainingglayers", none, none) RANGE(0,10)
+	 LABELREF(trainingglayers.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+trainingdlayers.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ trainingdlayers.label = PARM_LABEL("Discriminator Layers", "trainingdlayers") WIDTH(1.5);
+ PARM(integer, 1, "trainingdlayers", none, none) RANGE(0,10)
+	 LABELREF(trainingdlayers.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+trainingfilter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ trainingfilter.label = PARM_LABEL("Filter Size", "trainingfilter") WIDTH(1.5);
+ PARM(integer, 1, "trainingfilter", none, none) RANGE(0,10)
+	 LABELREF(trainingfilter.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+topscheduler.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+topscheduler.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ {  }
+
+ topscheduler.label = PARM_LABEL("TOP Scheduler Override", "topscheduler") WIDTH(1.5);
+ PARM_FIELD(pathstring, "topscheduler") VALUE(topscheduler.val) 
+	LABELREF(topscheduler.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(topscheduler.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(topscheduler.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ {  }
+}
+
+addjobparms.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    addjobparms.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+pdg_useschedulewhen.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+pdg_useschedulewhen.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+pdg_useschedulewhen.gad = PARM_BUTTON("pdg_useschedulewhen", "") toggle VALUE(pdg_useschedulewhen.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+pdg_schedulewhen.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ pdg_schedulewhen.label = PARM_LABEL("Schedule When", "pdg_schedulewhen") WIDTH(1.32);
+ PARM(integer, 1, "pdg_schedulewhen", none, field) RANGE(0,10)
+	 LABELREF(pdg_schedulewhen.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+sepparm4.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+pdg_workitemlabel.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+pdg_workitemlabel.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    pdg_workitemlabel.label = PARM_LABEL_SIMPLE("Work Item Label", "pdg_workitemlabel") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    pdg_workitemlabel.menu;
+
+    {  }
+
+    {  }
+}
+
+pdg_workitemlabelexpr.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    PARM_FIELD(string, "pdg_workitemlabelexpr") VALUE(pdg_workitemlabelexpr.val) HSTRETCH;
+
+    {  }
+}
+}	// Template join.bot
+
+pdg_workitempriority.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+pdg_workitempriority.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    pdg_workitempriority.label = PARM_LABEL_SIMPLE("Work Item Priority", "pdg_workitempriority") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    pdg_workitempriority.menu;
+
+    {  }
+
+    {  }
+}
+
+pdg_workitempriorityexpr.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ PARM(integer, 1, "pdg_workitempriorityexpr", none, field) RANGE(0,10)
+	 HSTRETCH;
+
+  {  }
+}
+}	// Template join.bot
+
+
+trainingparameters.gad = 
+GROUP collapsible "Training Parameters" flat   
+{
+    VALUE(trainingparameters.gad.val) LAYOUT(vertical) HSTRETCH
+	    traininglr.gad;		
+	    trainingiterations.gad;		
+	    trainingdecay.gad;		
+	    sepparm3.gad;		
+	    trainingglayers.gad;		
+	    trainingdlayers.gad;		
+	    trainingfilter.gad;		
+} 
+
+trainingimages2.gad = 
+GROUP collapsible "Training Images" flat   
+{
+    VALUE(trainingimages2.gad.val) LAYOUT(vertical) HSTRETCH
+	    trainingimages.gad;		
+	    traininguseimagecount.row.join;		
+	    trainingimagesize.gad;		
+	    trainingimagechannels.gad;		
+	    trainingbatchsize.gad;		
+	    trainingdirection.gad;		
+} 
+
+trainingsetup.gad = 
+GROUP collapsible "Training Setup" flat   
+{
+    VALUE(trainingsetup.gad.val) LAYOUT(vertical) HSTRETCH
+	    trainingprefix.gad;		
+	    trainingresults.gad;		
+	    trainingcheckpoints.gad;		
+	    trainingsaverate.gad;		
+	    trainingoutput.gad;		
+	    sepparm.gad;		
+	    trainingsaveplots.row.join;		
+	    traininguseonnx.row.join;		
+	    trainingusetensorboard.row.join;		
+} 
+
+venv.gad = 
+GROUP collapsible "Virtual Environment" flat   
+{
+    VALUE(venv.gad.val) LAYOUT(vertical) HSTRETCH
+	    venvpath.gad;		
+	    venvsource.gad;		
+	    pythonbin.gad;		
+	    python.gad;		
+	    pdgml.gad;		
+	    venvdescription.gad;		
+} 
+
+tasks.gad = 
+
+GROUP simple "Tasks" flat 
+{ 
+    VALUE(tasks.gad.val) LAYOUT(vertical) HSTRETCH 
+	    pdg_workitemgeneration.gad;		
+	    pdg_cachemode.gad;		
+} 
+
+training.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "training.gad"
+    { 
+	VALUE(training.gad.val) STRETCH(1,0)
+
+	TAB "Training"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    tasks.gad;		
+	    venv.gad;		
+	    trainingsetup.gad;		
+	    trainingimages2.gad;		
+	    trainingparameters.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Schedulers"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    topscheduler.row.join;		
+	    pdg_useschedulewhen.row.join;		
+	    sepparm4.gad;		
+	    pdg_workitemlabel.row.join;		
+	    pdg_workitempriority.row.join;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    training.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

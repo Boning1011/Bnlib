@@ -1,0 +1,71 @@
+// Magic: b71fb7c0
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Tue Aug 13 11:23:44 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+vertexgroups.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    vertexgroups.label = PARM_LABEL("Vertex Groups", "vertexgroups") WIDTH(1.5);
+    PARM_FIELD(string, "vertexgroups") VALUE(vertexgroups.val) 
+	LABELREF(vertexgroups.label) HSTRETCH;
+
+    vertexgroups.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+pointgroups.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    pointgroups.label = PARM_LABEL("Point Groups", "pointgroups") WIDTH(1.5);
+    PARM_FIELD(string, "pointgroups") VALUE(pointgroups.val) 
+	LABELREF(pointgroups.label) HSTRETCH;
+
+    pointgroups.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+primgroups.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    primgroups.label = PARM_LABEL("Primitive Groups", "primgroups") WIDTH(1.5);
+    PARM_FIELD(string, "primgroups") VALUE(primgroups.val) 
+	LABELREF(primgroups.label) HSTRETCH;
+
+    primgroups.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    vertexgroups.gad; 
+    pointgroups.gad; 
+    primgroups.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

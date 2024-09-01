@@ -1,0 +1,311 @@
+// Magic: 48b21266
+// Automatically generated PSI dialog (PSI version 20.5.304)
+// Mon Jul 29 10:32:27 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+enable_handle.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("enable_handle", "Enable Handle") toggle VALUE(enable_handle.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+mirror_axis.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    mirror_axis.label = PARM_LABEL_SIMPLE("Mirror Axis", "mirror_axis") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    mirror_axis.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+separator6.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+shape.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+shape.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    shape.label = PARM_LABEL_SIMPLE("Shape", "shape") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    shape.menu;
+
+    {  }
+
+    {  }
+}
+
+algorithm.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    algorithm.label = PARM_LABEL_SIMPLE("Algorithm", "algorithm") ;
+    { WIDTH(0.09) }
+
+    algorithm.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+compute_shape_transform.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    compute_shape_transform.label = PARM_LABEL_SIMPLE("Compute Shape Transform", "compute_shape_transform") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    compute_shape_transform.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+maxconcavity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ maxconcavity.label = PARM_LABEL("Max Concavity", "maxconcavity") WIDTH(1.5);
+ PARM(float, 1, "maxconcavity", none, none) RANGE(0,1)
+	 LABELREF(maxconcavity.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+shapegroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    shapegroup.label = PARM_LABEL("Shape Group", "shapegroup") WIDTH(1.5);
+    PARM_FIELD(string, "shapegroup") VALUE(shapegroup.val) 
+	LABELREF(shapegroup.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+t.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   t.label = PARM_LABEL("Translate", "t") WIDTH(1.5);
+   PARM(float, 3, "t", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(t.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+r.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   r.label = PARM_LABEL("Rotate", "r") WIDTH(1.5);
+   PARM(float, 3, "r", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(r.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+s.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   s.label = PARM_LABEL("Scale", "s") WIDTH(1.5);
+   PARM(float, 3, "s", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(s.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+pivot_t.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   pivot_t.label = PARM_LABEL("Pivot Translate", "pivot_t") WIDTH(1.5);
+   PARM(float, 3, "pivot_t", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(pivot_t.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+pivot_r.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   pivot_r.label = PARM_LABEL("Pivot Rotate", "pivot_r") WIDTH(1.5);
+   PARM(float, 3, "pivot_r", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(pivot_r.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+separator7.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+show_joints.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("show_joints", "Display Joints") toggle VALUE(show_joints.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+show_axes.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("show_axes", "Display Joint Axes") toggle VALUE(show_axes.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+show_links.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("show_links", "Display Links") toggle VALUE(show_links.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+solid_links.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("solid_links", "Solid Links") toggle VALUE(solid_links.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+show_scene_geo.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("show_scene_geo", "Show Geometry") toggle VALUE(show_scene_geo.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    enable_handle.gad; 
+    mirror_axis.gad; 
+    separator6.gad; 
+    shape.row.join; 
+    compute_shape_transform.gad; 
+    maxconcavity.gad; 
+    shapegroup.gad; 
+    t.gad; 
+    r.gad; 
+    s.gad; 
+    pivot_t.gad; 
+    pivot_r.gad; 
+    separator7.gad; 
+    show_joints.gad; 
+    show_axes.gad; 
+    show_links.gad; 
+    solid_links.gad; 
+    show_scene_geo.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

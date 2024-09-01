@@ -1,0 +1,411 @@
+// Magic: c92c2b65
+// Automatically generated PSI dialog (PSI version 20.5.332)
+// Thu Aug 22 14:16:16 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+class.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    class.label = PARM_LABEL_SIMPLE("Class", "class") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    class.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+attrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    attrib.label = PARM_LABEL("Attribute", "attrib") WIDTH(1.5);
+    PARM_FIELD(string, "attrib") VALUE(attrib.val) 
+	LABELREF(attrib.label) HSTRETCH;
+
+    attrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+rename.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("rename", "Rename Attribute") toggle VALUE(rename.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+newname.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    newname.label = PARM_LABEL("New Name", "newname") WIDTH(1.5);
+    PARM_FIELD(string, "newname") VALUE(newname.val) 
+	LABELREF(newname.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+keeporig.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("keeporig", "Keep Original Attribute") toggle VALUE(keeporig.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+vis.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("vis", "Visualize Output") toggle VALUE(vis.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+outrange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   outrange.label = PARM_LABEL("Output Range", "outrange") WIDTH(1.5);
+   PARM(float, 2, "outrange", none, none, "#1,#2")
+	RANGE(0,10)  LABELREF(outrange.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+useramp.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("useramp", "Remap Output Values") toggle VALUE(useramp.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+remapramp.si_rampedit = FLOAT_RAMP VALUE(remapramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+remapramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	remapramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(remapramp.pointno.val) HSTRETCH;
+    }
+}
+
+remapramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(remapramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(remapramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    remapramp.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(remapramp.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    remapramp.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(remapramp.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+remapramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    remapramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	remapramp.buttons.gad VSTRETCH;
+
+	remapramp.si_rampedit HSTRETCH;
+    }
+}
+
+remapramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Output Values over Input Range", "remapramp");
+
+	{ HSTRETCH }
+	remapramp.interp
+	    = ACTION_MENU_ICONBUTTON remapramp.interp_icon.val
+                HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(remapramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(remapramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	remapramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	TOGGLE_ICONBUTTON "COP2_ramp" VALUE(remapramp.drawgrayscale.val)
+		LOOKFLAT HELP("Grayscale View") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	remapramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(remapramp.hideparms.val) HSTRETCH
+	    remapramp.multiramp;
+	    {}
+	}
+    }
+}
+
+reportlimitvals.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("reportlimitvals", "Output Original Min/Max Values") toggle VALUE(reportlimitvals.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+minmaxprefix.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    minmaxprefix.label = PARM_LABEL("Detail Attribute Prefix", "minmaxprefix") WIDTH(1.5);
+    PARM_FIELD(string, "minmaxprefix") VALUE(minmaxprefix.val) 
+	LABELREF(minmaxprefix.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+sepparm.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+visramp.si_rampedit = COLOR_RAMP VALUE(visramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+visramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	visramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(visramp.pointno.val) HSTRETCH;
+    }
+}
+
+visramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(visramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(visramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    visramp.toggleparms.gad
+      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+	HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+	VALUE(visramp.toggle.val)
+	LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+}
+
+visramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    visramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	visramp.buttons.gad VSTRETCH;
+
+	visramp.si_rampedit HSTRETCH;
+    }
+}
+
+visramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Visualization Ramp", "visramp");
+
+	{ HSTRETCH }
+	visramp.interp
+	    = ACTION_MENU_ICONBUTTON visramp.interp_icon.val
+                HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(visramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(visramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	visramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	visramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(visramp.hideparms.val) HSTRETCH
+	    visramp.multiramp;
+	    {}
+	}
+    }
+}
+
+fd_metadata.gad = 
+GROUP collapsible "Metadata" flat   
+{
+    VALUE(fd_metadata.gad.val) LAYOUT(vertical) HSTRETCH
+	    reportlimitvals.gad;		
+	    minmaxprefix.gad;		
+} 
+
+fd_output.gad = 
+GROUP collapsible "Remap Output" flat   
+{
+    VALUE(fd_output.gad.val) LAYOUT(vertical) HSTRETCH
+	    outrange.gad;		
+	    useramp.gad;		
+	    remapramp.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    class.gad; 
+    attrib.gad; 
+    rename.gad; 
+    newname.gad; 
+    keeporig.gad; 
+    vis.gad; 
+    fd_output.gad; 
+    fd_metadata.gad; 
+    sepparm.gad; 
+    visramp.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}
