@@ -1,0 +1,37 @@
+# Lines starting with # are comments and ignored
+#
+# Each entry starts with no indentation and gives the key used
+# by the menu callback.  By convention, this is nodename/parmname.
+# Multiple keys can be given for the same entry.
+#
+# The next line gives the name of the expression.  Its indentation
+# level is then used for the remainder of the text.  All the
+# code until the next parameter are appended together to make
+# the snippet.  All preceeding indentation is removed.
+# Note that tabs == 8 is assumed.
+
+attribwrangle/snippet
+    [BONING]Carve Quad
+    //Use this code in Primitive Wrangle
+    int pts[] = primpoints(0, @primnum);  // Get points of current primitive
+    float ratio = prim(0, "ratio", @primnum);  // Get ratio for current prim
+
+    // Create new points for the cut edge
+    vector p0 = point(0, "P", pts[0]);  // Bottom point
+    vector p1 = point(0, "P", pts[3]);  // Top point
+    vector newP0 = lerp(p0, point(0, "P", pts[1]), ratio);  // New bottom point
+    vector newP1 = lerp(p1, point(0, "P", pts[2]), ratio);  // New top point
+
+    // Add new points
+    int newPt0 = addpoint(0, newP0);
+    int newPt1 = addpoint(0, newP1);
+
+    // Create new primitive with trimmed shape
+    int newPrim = addprim(0, "poly");
+    addvertex(0, newPrim, pts[0]);      // Original bottom-left
+    addvertex(0, newPrim, newPt0);      // New bottom-right
+    addvertex(0, newPrim, newPt1);      // New top-right
+    addvertex(0, newPrim, pts[3]);      // Original top-left
+
+    // Remove original primitive
+    removeprim(0, @primnum, 1);
