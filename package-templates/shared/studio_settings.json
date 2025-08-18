@@ -1,0 +1,13 @@
+{
+  "env": [
+    {
+      "HOUDINI_HQUEUE_SERVER": "http://10.0.10.186:5000/"
+    },
+    {
+      "HOUDINI_HQUEUE_HFS": "$HFS"
+    },
+    {
+      "HOUDINI_DISABLE_OPENFX_DEFAULT_PATH": "1"
+    }
+  ]
+}

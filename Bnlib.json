@@ -1,0 +1,10 @@
+{
+    "env":[
+        {
+            "Bnlib": "path/to/bnlib"
+        }
+    ],
+    "hpath":[
+        "$Bnlib"
+    ]
+}

@@ -1,1 +1,0 @@
-{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["MirrorSpout"]}, {"type": "para", "indent": 0, "text": ["This example demonstrates how to mirror geometry using the Mirror SOP."], "extent": [0, 71]}], "examplefor": "/nodes/sop/mirror", "examplefile": "/examples/nodes/sop/mirror/MirrorSpout.otl"}
