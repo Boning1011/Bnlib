@@ -11,7 +11,7 @@
 # Note that tabs == 8 is assumed.
 
 attribwrangle/snippet
-    [BONING]Carve Quad
+    [Bnlib]Carve Quad
     //Use this code in Primitive Wrangle
     int pts[] = primpoints(0, @primnum);  // Get points of current primitive
     float ratio = prim(0, "ratio", @primnum);  // Get ratio for current prim
@@ -35,3 +35,69 @@ attribwrangle/snippet
 
     // Remove original primitive
     removeprim(0, @primnum, 1);
+
+
+attribwrangle/snippet
+    [Bnlib]Split Rectangle to Square
+    int pts[] = primpoints(0, @primnum);
+    vector P0 = point(0, "P", pts[0]);
+    vector P1 = point(0, "P", pts[1]);
+    vector P2 = point(0, "P", pts[2]);
+    vector P3 = point(0, "P", pts[3]);
+
+    float l01 = length(P1 - P0);
+    float l12 = length(P2 - P1);
+    addprimattrib(0, "sq_len", -1.0);
+
+    float tol = 1e-6 * max(l01, l12);
+    if (abs(l01 - l12) <= tol) return;
+
+    int a, b, psq, prem;
+
+    if (l01 > l12) {
+        float t = l12 / l01;
+        vector A = lerp(P0, P1, t);
+        vector B = lerp(P3, P2, t);
+        a = addpoint(0, A);
+        b = addpoint(0, B);
+
+        psq = addprim(0, "poly");
+        addvertex(0, psq, pts[0]);
+        addvertex(0, psq, a);
+        addvertex(0, psq, b);
+        addvertex(0, psq, pts[3]);
+
+        prem = addprim(0, "poly");
+        addvertex(0, prem, a);
+        addvertex(0, prem, pts[1]);
+        addvertex(0, prem, pts[2]);
+        addvertex(0, prem, b);
+
+        setprimattrib(0, "sq_len", psq, l12, "set");
+        setprimattrib(0, "sq_len", prem, -1.0, "set");
+    } else {
+        float t = l01 / l12;
+        vector A = lerp(P1, P2, t);
+        vector B = lerp(P0, P3, t);
+        a = addpoint(0, A);
+        b = addpoint(0, B);
+
+        psq = addprim(0, "poly");
+        addvertex(0, psq, pts[0]);
+        addvertex(0, psq, pts[1]);
+        addvertex(0, psq, a);
+        addvertex(0, psq, b);
+
+        prem = addprim(0, "poly");
+        addvertex(0, prem, b);
+        addvertex(0, prem, a);
+        addvertex(0, prem, pts[2]);
+        addvertex(0, prem, pts[3]);
+
+        setprimattrib(0, "sq_len", psq, l01, "set");
+        setprimattrib(0, "sq_len", prem, -1.0, "set");
+    }
+
+    setprimgroup(0, "square", psq, 1, "set");
+    removeprim(0, @primnum, 1);
+
